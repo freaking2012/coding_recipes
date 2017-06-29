@@ -12,7 +12,7 @@ For ex: n = 3
 7 6 5
 
 */
-public class Spiral {
+public class Spiral_M {
 
 	public static void main(String[] args)
 	{
