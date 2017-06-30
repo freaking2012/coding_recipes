@@ -14,6 +14,14 @@ import java.io.IOException;
 public class KMPPatternMatching_S {
     private int[] prefixArrayComputation(char pattern[]) {
 
+        /**
+         * the longestPrefixSuffix Array stores for each index - i, the length of longest substring from 0 to i which
+         * is prefix as well as suffix of substring(0 to i)
+         *
+         * It aids in O(n+m) complexity instead of O(n*n), as in case of mismatch while comparing pattern with text, we
+         * don't start over the match with zeroth index of pattern, but we leverage the matches done so far and avoiding
+         * rematching again the longest prefix which is also suffix.
+         */
         int longestPrefixSuffix[] = new int[pattern.length];
         int j = 0, i;
 
@@ -47,6 +55,10 @@ public class KMPPatternMatching_S {
                 if (j == 0)
                     i++;
                 else {
+                    /**
+                     * Going to position of longest prefix which is also suffix in the pattern substring(0,i-1) and not
+                     * starting over the match from 0th index.
+                     */
                     j = lps[j - 1];
                 }
             }
