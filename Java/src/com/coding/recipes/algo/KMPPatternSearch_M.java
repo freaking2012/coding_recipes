@@ -10,9 +10,10 @@ AABAACAADAABAABA
 AABA
 
 Output
-Pattern found at index 0
-Pattern found at index 9
-Pattern found at index 12*/
+Found pattern at index: 0
+Found pattern at index: 9
+Found pattern at index: 12
+*/
 public class KMPPatternSearch_M {
 
 	public static void main(String[] args) throws IOException {
