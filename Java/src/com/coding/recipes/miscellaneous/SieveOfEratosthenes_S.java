@@ -1,69 +1,46 @@
 package com.coding.recipes.miscellaneous;
 
+
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
- * Created by shubham on 7/26/17.
+ * Created by shubham on 7/27/17.
  */
-public class SieveOfAtkins {
-
-    public void printPrimesWithinLimit(long limit) {
+public class SieveOfEratosthenes_S {
+    public void printAllPrimes(int limit) {
+        boolean sieve[] = new boolean[limit + 1];
+        Arrays.fill(sieve, true);
+        sieve[0] = false;
+        sieve[1] = false;
+        int m = (int) Math.sqrt(limit);
+        for (int i = 2; i <= m; i++) {
+            if (sieve[i]) {
+                for (int j = i * i; j < limit; j += i) {
+                    sieve[j] = false;
+                }
+            }
+        }
 
         System.out.println("Primes in range: (1," + limit + ") are:");
-        if (2 < limit) {
-            System.out.println(2);
-        }
-        if (3 < limit) {
-            System.out.println(3);
-        }
-
-        boolean sieve[] = new boolean[(int) limit + 1];
-
-        //for all pairs of (x,y) if any of the 3 equations & condition is satisfied, set the value of the equation (n) as true in the sieve
-        for (long x = 1; x * x < limit; x++) {
-            for (long y = 1; y * y < limit; y++) {
-                long n = (4 * x * x) + (y * y);
-                if (n <= limit && (n % 12 == 1 || n % 12 == 5))
-                    sieve[(int) n] = true;
-
-                n = (3 * x * x) + (y * y);
-                if (n <= limit && n % 12 == 7)
-                    sieve[(int) n] = true;
-
-                n = (3 * x * x) - (y * y);
-                if (x > y && n <= limit && n % 12 == 11)
-                    sieve[(int) n] = true;
-            }
-        }
-
-        //set false those true values which are MULTIPLES of a Perfect Square
-        for (long k = 5; k * k < limit; k++) {
-            if (sieve[(int) k]) {
-                for (long j = k * k; j < limit; j += k * k)
-                    sieve[(int) j] = false;
-            }
-        }
-
-        for (long a = 5; a < limit; a++) {
-            if (sieve[(int) a]) {
-                System.out.println(a);
-            }
+        for (int i = 0; i < limit; i++) {
+            if (sieve[i])
+                System.out.println(i);
         }
     }
 }
 
-class SieveDriver {
+class SoEDriver {
     public static void main(String[] args) throws IOException {
-        SieveOfAtkins obj = new SieveOfAtkins();
         Reader s = new Reader();
-
-        long t = s.nextLong();
+        SieveOfEratosthenes_S obj = new SieveOfEratosthenes_S();
+        int t = s.nextInt(), limit;
 
         while (t-- > 0) {
-            long limit = s.nextLong();
-            obj.printPrimesWithinLimit(limit);
+            limit = s.nextInt();
+            obj.printAllPrimes(limit);
         }
     }
 
