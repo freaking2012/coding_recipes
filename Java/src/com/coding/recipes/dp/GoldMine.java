@@ -46,12 +46,6 @@ public class GoldMine {
     private static int calculateMaxGold(int[][] mat, int n, int m) {
 
         int a[][] = new int[n + 2][m + 1];
-        for (int i = 0; i <= n + 1; i++) {
-            a[i][0] = 0;
-        }
-        for (int i = 0; i <= m; i++) {
-            a[0][i] = 0;
-        }
         int max = 0;
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
