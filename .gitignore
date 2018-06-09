@@ -1,0 +1,6 @@
+.idea/
+.out/
+/bin/
+.classpath
+.project
+Java/coding_recipes.iml
